@@ -3,13 +3,12 @@ import "../style/myApp.css"
 
 const Cell = (props) => {
 
-    let {cell} = props;
-    console.log(cell)
+    let {cell, handleClick} = props;
 
     return (
-        <div className="cell">
-            {cell.value}
-        </div>
+        <button className="cell" onClick={(event) => handleClick(event, cell.id)}>
+            {cell.curState ? cell.value : "?"}
+        </button>
     );
 };
 
