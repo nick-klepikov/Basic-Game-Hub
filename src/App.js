@@ -7,38 +7,35 @@ import BottomMenu from "./comps/Bottom Menu";
 
 function App() {
 
-    let [cells, setCells] = useState([
-        {value: "👽", curState: false, id: uuidv4()}, {value: "👽", curState: false, id: uuidv4()}, {
-            value: "👀",
-            curState: false,
-            id: uuidv4()
-        },
-        {value: "👀", curState: false, id: uuidv4()}, {value: "🫄", curState: false, id: uuidv4()}, {
-            value: "🫄",
-            curState: false,
-            id: uuidv4()
-        },
-        {value: "🌚", curState: false, id: uuidv4()}, {value: "🌚", curState: false, id: uuidv4()}, {
-            value: "🧬",
-            curState: false,
-            id: uuidv4()
-        },
-        {value: "🧬", curState: false, id: uuidv4()}, {value: "⚰️", curState: false, id: uuidv4()}, {
-            value: "⚰️",
-            curState: false,
-            id: uuidv4()
-        },
-    ]);
+    let [cells, setCells] = useState([]);
+
+    const fillCells = () => {
+        let curArrOfEmojis = [], start = 0X1F600, end = 0X1F64F;
+        for(let i = 0; i < 6; i++) {
+            let currentEmoji = Math.floor(Math.random() * (end - start + 1) + start);
+            curArrOfEmojis.push(String.fromCodePoint(currentEmoji));
+        }
+
+        let newCellArr = [];
+        for(let emoji of curArrOfEmojis) {
+            newCellArr.push({value: emoji, curState: false, id: uuidv4()});
+            newCellArr.push({value: emoji, curState: false, id: uuidv4()});
+        }
+
+        newCellArr.sort(() => Math.random() - 0.5);
+
+        setCells(newCellArr);
+    };
+
+    useEffect(() => {
+        fillCells();
+    }, [])
 
 
     let [isRestartButtonClicked, setIsRestartButtonClicked] = useState(false);
     let [isGameOver, setIsGameOver] = useState(false);
     const handleRestartGame = () => {
-        let newCells = cells;
-        newCells.map(el => el.curState = false);
-        setCells(newCells);
-
-        setCells(cells.sort(() => Math.random() - 0.5));
+        fillCells();
         setIsRestartButtonClicked(false);
     };
 
