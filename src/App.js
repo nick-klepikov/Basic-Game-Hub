@@ -11,6 +11,7 @@ function App() {
     let [curOpened, setCurOpened] = useState([]);
     let [isRestartButtonClicked, setIsRestartButtonClicked] = useState(false);
     let [isGameOver, setIsGameOver] = useState(false);
+    let [tries, setTries] = useState(0);
 
     const fillCells = () => {
         let curArrOfEmojis = [], start = 0X1F600, end = 0X1F64F;
@@ -30,18 +31,12 @@ function App() {
         setCells(newCellArr);
     };
 
-    useEffect(() => {
-        fillCells();
-    }, [])
-
     const handleRestartGame = () => {
         fillCells();
         setIsRestartButtonClicked(false);
+        setTries(0);
+        setIsGameOver(false);
     };
-
-    useEffect(() => {
-        if (isRestartButtonClicked) handleRestartGame();
-    }, [isRestartButtonClicked]);
 
     const closeButtonsAfter2SecondsOrRemain = () => {
         if (curOpened[0].value === curOpened[1].value) {
@@ -56,7 +51,7 @@ function App() {
         setTimeout(() => {
             setCurOpened([]);
             setCells(cells.map(cell => {
-                if(!cell.isGuessed) {
+                if (!cell.isGuessed) {
                     return {...cell, curState: false};
                 }
                 return cell;
@@ -64,23 +59,38 @@ function App() {
         }, 2000)
     };
 
-    useEffect(() => {
-        if(curOpened.length === 2) {
-            closeButtonsAfter2SecondsOrRemain();
-        }
-    }, [curOpened])
-
-
     const handleClick = (curClicked) => {
-        if(curOpened.length === 2 || (curOpened.length && curClicked.id === curOpened[0].id) || curClicked.isGuessed) return;
+        if (curOpened.length === 2 || (curOpened.length && curClicked.id === curOpened[0].id) || curClicked.isGuessed) return;
         setCells(cells.map(cell => {
-            if(cell.id === curClicked.id) {
+            if (cell.id === curClicked.id) {
                 setCurOpened([...curOpened, cell]);
                 return {...cell, curState: true};
             }
             return cell;
         }));
     };
+
+    useEffect(() => {
+        fillCells();
+    }, [])
+
+    useEffect(() => {
+        if (isRestartButtonClicked) handleRestartGame();
+    }, [isRestartButtonClicked]);
+
+    useEffect(() => {
+        if(cells.every(cell => cell.isGuessed)) {
+            setIsGameOver(true);
+        }
+    }, [cells])
+
+    useEffect(() => {
+        if (curOpened.length === 2) {
+            setTries(tries + 1);
+            closeButtonsAfter2SecondsOrRemain();
+        }
+    }, [curOpened])
+
 
 
     return (
@@ -92,10 +102,13 @@ function App() {
                 handleClick={handleClick}
             />
 
+
             <BottomMenu
                 isRestartButtonClicked={isRestartButtonClicked}
                 setIsRestartButtonClicked={setIsRestartButtonClicked}
                 isGameOver={isGameOver}
+                tries={tries}
+                isGameWon={isGameOver}
             />
         </div>
     );

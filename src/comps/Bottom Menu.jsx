@@ -3,12 +3,20 @@ import "../style/myApp.css"
 
 const BottomMenu = (props) => {
 
-    let {isRestartButtonClicked, setIsRestartButtonClicked, isGameOver} = props;
+    let {tries, setIsRestartButtonClicked, isGameOver} = props;
 
     return (
-        <div>
+        <div className="bottomMenu">
+            {
+                isGameOver ?
+                    <div className="winnerNotification">You won in {tries} steps!</div>
+                    :
+                    <div className="triesCounter">Current tries: {tries}</div>
+            }
+
+
             <button className="startButton" onClick={() => setIsRestartButtonClicked(true)}>
-                {!isGameOver ? "Restart" : "Start"}
+                {!isGameOver ? "Restart" : "Start Over"}
             </button>
         </div>
     );
