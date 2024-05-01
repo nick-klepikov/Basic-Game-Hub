@@ -46,3 +46,32 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.sideNav {
+    transform: rotate(-90deg);
+}
+
+.sideMenu {
+    min-height: 100vh;
+    width: 70px;
+}
+
+.navbrandimg {
+    position: fixed;
+    top: 10px;
+}
+
+.collapsemenu {
+    width: 5em;
+}
+
+.navtog {
+    position: relative;
+    right: 6px;
+}
+
+@media all and (width < 576px) {
+    .sideMenuCol {
+        width: 300px;
+    }
+}

@@ -4,7 +4,8 @@ import Board from "./comps/Board";
 import {v4 as uuidv4} from "uuid";
 import {useState, useEffect} from "react";
 import BottomMenu from "./comps/Bottom Menu";
-
+import SideMenu from "./comps/SideMenu";
+import "bootstrap/dist/css/bootstrap.min.css"
 function App() {
 
     let [cells, setCells] = useState([]);
@@ -95,21 +96,25 @@ function App() {
 
     return (
         <div className="App">
-            <Header/>
+           <div className="me-auto">
+               <SideMenu />
+           </div>
 
-            <Board
-                cells={cells}
-                handleClick={handleClick}
-            />
+            {/*<Header/>*/}
+
+            {/*<Board*/}
+            {/*    cells={cells}*/}
+            {/*    handleClick={handleClick}*/}
+            {/*/>*/}
 
 
-            <BottomMenu
-                isRestartButtonClicked={isRestartButtonClicked}
-                setIsRestartButtonClicked={setIsRestartButtonClicked}
-                isGameOver={isGameOver}
-                tries={tries}
-                isGameWon={isGameOver}
-            />
+            {/*<BottomMenu*/}
+            {/*    isRestartButtonClicked={isRestartButtonClicked}*/}
+            {/*    setIsRestartButtonClicked={setIsRestartButtonClicked}*/}
+            {/*    isGameOver={isGameOver}*/}
+            {/*    tries={tries}*/}
+            {/*    isGameWon={isGameOver}*/}
+            {/*/>*/}
         </div>
     );
 }
