@@ -3,10 +3,10 @@
 }
 
 .App {
-    display: grid;
-    justify-items: center;
-    align-items: center;
     background: linear-gradient(to right top, #185a9d, #43cea2);
+    position: fixed;
+    width: 100vw;
+
 }
 
 .board {
@@ -71,8 +71,22 @@
     right: 6px;
 }
 
-@media all and (width < 576px) {
+@media (width < 576px) {
     .sideMenuCol {
         width: 300px;
     }
+}
+
+.startgamebutton {
+     border-radius: 5px;
+     border: none;
+     background: white;
+     color: lightseagreen;
+    height: 33px;
+     font-weight: 500;
+ }
+
+.startgamebutton:hover  {
+    background: coral;
+    color: white;
 }

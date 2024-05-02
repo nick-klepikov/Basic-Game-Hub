@@ -2,15 +2,19 @@ import React, {useState} from 'react';
 import {Container, Nav, Navbar, NavbarBrand, NavbarCollapse, NavbarToggle} from "react-bootstrap";
 import logo from "./controller.svg";
 import {NavLink} from "react-router-dom";
+import {Route, Routes} from "react-router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../style/myApp.css";
+import Home from "../pages/Home";
+import MemoryGameStartMenu from "../pages/MemoryGameStartMenu";
+import TicTacToe from "../pages/TicTacToe";
 
 const SideMenu = () => {
     let [isCollapsed, setIsCollapsed] = useState(false);
 
     return (
-        <>
-            <Navbar collapseOnSelect style={{backgroundColor: "#232B2B  "}} variant="dark" expand="sm" className={`sideMenu mt-0 ${isCollapsed ? "sideMenuCol" : ""}`}>
+        <div className="d-flex">
+            <Navbar collapseOnSelect style={{backgroundColor: "#232B2B"}} variant="dark" expand="sm" className={`sideMenu mt-0 ${isCollapsed ? "sideMenuCol" : ""}`}>
                 <Container className="d-flex flex-column justify-content-center align-content-center">
                     <NavbarBrand href="/" className="m-0 navbrandimg">
                         <img
@@ -28,8 +32,7 @@ const SideMenu = () => {
                                 <Nav.Link className="sideNav mb-5" to="/" as={NavLink}>Home</Nav.Link>
                                 <Nav.Link className="sideNav mb-5" to="/tictactoe"
                                           as={NavLink}>TicTacToe</Nav.Link>
-                                <Nav.Link className="sideNav mb-5" to="/memory" as={NavLink}>Memory
-                                    Game</Nav.Link>
+                                <Nav.Link className="sideNav mb-5" to="/startmemorygame" as={NavLink}>Memory Game</Nav.Link>
                             </Nav>
                         </NavbarCollapse>
                     </div>
@@ -44,7 +47,7 @@ const SideMenu = () => {
                                 <Nav className="d-flex">
                                     <Nav.Link className="mb-5" to="/" as={NavLink}>Home</Nav.Link>
                                     <Nav.Link className="mb-5" to="/tictactoe" as={NavLink}>TicTacToe</Nav.Link>
-                                    <Nav.Link  to="/memory" as={NavLink}>Memory Game</Nav.Link>
+                                    <Nav.Link  to="/startmemorygame" as={NavLink}>Memory Game</Nav.Link>
                                 </Nav>
                             </NavbarCollapse>
 
@@ -53,7 +56,13 @@ const SideMenu = () => {
 
                 </Container>
             </Navbar>
-        </>
+
+            <Routes>
+                <Route path={"/"} element={<Home/>}/>
+                <Route path={"/startmemorygame"} element={<MemoryGameStartMenu/>}/>
+                <Route path={"/tictactoe"} element={<TicTacToe/>}/>
+            </Routes>
+        </div>
     );
 };
 
