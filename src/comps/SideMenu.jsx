@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Container, Nav, Navbar, NavbarBrand, NavbarCollapse, NavbarToggle} from "react-bootstrap";
-import logo from "./YCC.jpg";
+import logo from "./controller.svg";
 import {NavLink} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../style/myApp.css";
@@ -10,9 +10,9 @@ const SideMenu = () => {
 
     return (
         <>
-            <Navbar collapseOnSelect bg="dark" variant="dark" expand="sm" className={`sideMenu mt-0 ${isCollapsed ? "sideMenuCol" : ""}`}>
-                <Container className="d-flex flex-column justify-content-center align-content-center position-relative">
-                    <NavbarBrand className="m-0 navbrandimg">
+            <Navbar collapseOnSelect style={{backgroundColor: "darkslategrey"}} variant="dark" expand="sm" className={`sideMenu mt-0 ${isCollapsed ? "sideMenuCol" : ""}`}>
+                <Container className="d-flex flex-column justify-content-center align-content-center">
+                    <NavbarBrand href="/" className="m-0 navbrandimg">
                         <img
                             src={logo}
                             alt="logo"

@@ -57,8 +57,8 @@
 }
 
 .navbrandimg {
-    position: fixed;
-    top: 10px;
+    position: absolute;
+    top: 0;
 }
 
 .collapsemenu {
