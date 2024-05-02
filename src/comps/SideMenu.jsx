@@ -10,7 +10,7 @@ const SideMenu = () => {
 
     return (
         <>
-            <Navbar collapseOnSelect style={{backgroundColor: "darkslategrey"}} variant="dark" expand="sm" className={`sideMenu mt-0 ${isCollapsed ? "sideMenuCol" : ""}`}>
+            <Navbar collapseOnSelect style={{backgroundColor: "#232B2B  "}} variant="dark" expand="sm" className={`sideMenu mt-0 ${isCollapsed ? "sideMenuCol" : ""}`}>
                 <Container className="d-flex flex-column justify-content-center align-content-center">
                     <NavbarBrand href="/" className="m-0 navbrandimg">
                         <img

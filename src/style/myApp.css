@@ -6,6 +6,7 @@
     display: grid;
     justify-items: center;
     align-items: center;
+    background: linear-gradient(to right top, #185a9d, #43cea2);
 }
 
 .board {
