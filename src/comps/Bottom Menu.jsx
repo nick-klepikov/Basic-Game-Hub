@@ -5,6 +5,8 @@ const BottomMenu = (props) => {
 
     let {tries, setIsRestartButtonClicked, isGameOver} = props;
 
+    console.log(isGameOver)
+
     return (
         <div className="bottomMenu">
             {

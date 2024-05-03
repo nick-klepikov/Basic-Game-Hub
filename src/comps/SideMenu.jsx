@@ -8,6 +8,7 @@ import "../style/myApp.css";
 import Home from "../pages/Home";
 import MemoryGameStartMenu from "../pages/MemoryGameStartMenu";
 import TicTacToe from "../pages/TicTacToe";
+import MemoryGamePage from "../pages/MemoryGamePage";
 
 const SideMenu = () => {
     let [isCollapsed, setIsCollapsed] = useState(false);
@@ -16,15 +17,16 @@ const SideMenu = () => {
         <div className="d-flex">
             <Navbar collapseOnSelect style={{backgroundColor: "#232B2B"}} variant="dark" expand="sm" className={`sideMenu mt-0 ${isCollapsed ? "sideMenuCol" : ""}`}>
                 <Container className="d-flex flex-column justify-content-center align-content-center">
-                    <NavbarBrand href="/" className="m-0 navbrandimg">
-                        <img
-                            src={logo}
-                            alt="logo"
-                            height="40px"
-                            width="40px"
-                        />
+                    <NavbarBrand className="m-0 navbrandimg">
+                        <Nav.Link to="/" as={NavLink}>
+                            <img
+                                src={logo}
+                                alt="logo"
+                                height="40px"
+                                width="40px"
+                            />
+                        </Nav.Link>
                     </NavbarBrand>
-
 
                     <div className="d-flex justify-content-center d-none d-sm-block">
                         <NavbarCollapse id={"navbar-nav-toggle"}>
@@ -61,6 +63,7 @@ const SideMenu = () => {
                 <Route path={"/"} element={<Home/>}/>
                 <Route path={"/startmemorygame"} element={<MemoryGameStartMenu/>}/>
                 <Route path={"/tictactoe"} element={<TicTacToe/>}/>
+                <Route path={"/memorygame"} element={<MemoryGamePage/>}/>
             </Routes>
         </div>
     );
