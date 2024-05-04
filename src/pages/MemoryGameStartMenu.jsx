@@ -14,7 +14,7 @@ const MemoryGameStartMenu = (props) => {
             <div className="d-flex flex-column vh-100 justify-content-center">
                 <h3 style={{color: "whitesmoke"}}>Set the size of board</h3>
                 <div className="d-flex align-items-center justify-content-center mb-2">
-                    <select className="form-select me-2 w-50" aria-label="number-of-rows" required
+                    <select className="form-select me-2 w-50 selector" aria-label="number-of-rows" required
                             onChange={(event) => handleRowsChange(+event.target.value)}>
                         <option value={0}>Rows</option>
                         <option value={3}>3</option>
@@ -25,7 +25,7 @@ const MemoryGameStartMenu = (props) => {
 
                     <span>X</span>
 
-                    <select className="form-select ms-2 w-50" aria-label="number-of-cols" required
+                    <select className="form-select ms-2 w-50 selector" aria-label="number-of-cols" required
                             onChange={(event) => handleColsChange(+event.target.value)}>
                         <option value={0}>Cols</option>
                         <option value={3}>3</option>
@@ -36,6 +36,13 @@ const MemoryGameStartMenu = (props) => {
                 </div>
 
                 <div>
+                    {!!(rows * cols % 2) &&
+                        <div className="cantstartgamephrase">
+                            <strong>
+                                Can't start game with an odd number of cells!
+                            </strong>
+                        </div>
+                    }
                     {!!(rows * cols % 2) || !(rows * cols) ?
                         <button className="startgamebutton" disabled>Start Game</button>
                         :

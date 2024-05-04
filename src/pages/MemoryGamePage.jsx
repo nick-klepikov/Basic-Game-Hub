@@ -14,7 +14,7 @@ const MemoryGamePage = () => {
     let [isGameSettingsSet, setIsGameSettingsSet] = useState(false);
     let [rows, setRows] = useState(0);
     let [cols, setCols] = useState(0);
-    let title = "Memory Game"
+    let title = "Memory Game";
     const fillCells = () => {
         let curArrOfEmojis = [], start = 0X1F600, end = 0X1F64F;
         for (let i = 0; i < rows * cols / 2; i++) {
@@ -78,6 +78,16 @@ const MemoryGamePage = () => {
         setCols(num);
     };
 
+    const handleBackToMenu = () => {
+        setIsGameOver(false);
+        setTries(0);
+        setIsRestartButtonClicked(false);
+        setIsGameSettingsSet(false);
+        setCols(0);
+        setRows(0);
+    };
+
+
     useEffect(() => {
         if(isGameSettingsSet) {
             fillCells();
@@ -107,8 +117,14 @@ const MemoryGamePage = () => {
     return (
         <div>
             {isGameSettingsSet ?
-                <div className="d-flex flex-column align-items-center vw-100 vh-100">
-                    <Header title={title}/>
+                <div className="d-flex flex-column vw-100 vh-100">
+                    <div className="d-flex">
+                        <button className="rounded-5 backbutton" onClick={handleBackToMenu}>←</button>
+                        <div className="m-auto">
+                            <Header title={title}/>
+                        </div>
+                    </div>
+
                     <div className="d-flex flex-column vh-100 justify-content-center align-items-center">
                         <Board
                             cells={cells}
