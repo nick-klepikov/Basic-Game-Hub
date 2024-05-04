@@ -126,3 +126,27 @@ button:disabled {
     background: orangered;
     color: white;
 }
+
+.selector {
+    max-width: 7vw;
+}
+
+.cantstartgamephrase {
+    color: orangered;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.backbutton {
+    height: 6vh;
+    width: 3vw;
+    position: relative;
+    left: 3px;
+    top: 2px;
+    border: 1px solid transparent;
+}
+
+.backbutton:hover {
+    background: #61dafb;
+    color: white;
+}
