@@ -119,7 +119,7 @@ const MemoryGamePage = () => {
             {isGameSettingsSet ?
                 <div className="d-flex flex-column vw-100 vh-100">
                     <div className="d-flex">
-                        <button className="rounded-5 backbutton" onClick={handleBackToMenu}>←</button>
+                        <button className="rounded-5 backbutton d-flex align-items-center" onClick={handleBackToMenu}>←</button>
                         <div className="m-auto">
                             <Header title={title}/>
                         </div>
