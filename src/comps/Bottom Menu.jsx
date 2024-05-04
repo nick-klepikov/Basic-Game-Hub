@@ -5,10 +5,8 @@ const BottomMenu = (props) => {
 
     let {tries, setIsRestartButtonClicked, isGameOver} = props;
 
-    console.log(isGameOver)
-
     return (
-        <div className="bottomMenu">
+        <div className="bottomMenu" style={{color: "whitesmoke"}}>
             {
                 isGameOver ?
                     <div className="winnerNotification">You won in {tries} steps!</div>
@@ -17,7 +15,7 @@ const BottomMenu = (props) => {
             }
 
 
-            <button className="startButton" onClick={() => setIsRestartButtonClicked(true)}>
+            <button className="startButton restartbutton" onClick={() => setIsRestartButtonClicked(true)}>
                 {!isGameOver ? "Restart" : "Start Over"}
             </button>
         </div>

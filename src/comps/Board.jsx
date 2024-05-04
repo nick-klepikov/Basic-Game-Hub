@@ -4,10 +4,10 @@ import Cell from "./Cell";
 
 const Board = (props) => {
 
-    let {cells, handleClick} = props;
+    let {cells, handleClick, rows, cols} = props;
 
     return (
-        <div className="board">
+        <div className="board" style={{gridTemplate: `repeat(${rows}, 1fr) / repeat(${cols}, 1fr)`}}>
             {cells.map(cell => <Cell
                                 key={cell.id}
                                 cell={cell}

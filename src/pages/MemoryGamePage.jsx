@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Board from "../comps/Board";
 import BottomMenu from "../comps/Bottom Menu";
-import Header from "../comps/Header";
 import {v4 as uuidv4} from "uuid";
+import MemoryGameStartMenu from "./MemoryGameStartMenu";
+import Header from "../comps/Header";
 
 const MemoryGamePage = () => {
     let [cells, setCells] = useState([]);
@@ -10,9 +11,13 @@ const MemoryGamePage = () => {
     let [isRestartButtonClicked, setIsRestartButtonClicked] = useState(false);
     let [isGameOver, setIsGameOver] = useState(false);
     let [tries, setTries] = useState(0);
+    let [isGameSettingsSet, setIsGameSettingsSet] = useState(false);
+    let [rows, setRows] = useState(0);
+    let [cols, setCols] = useState(0);
+    let title = "Memory Game"
     const fillCells = () => {
         let curArrOfEmojis = [], start = 0X1F600, end = 0X1F64F;
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < rows * cols / 2; i++) {
             let currentEmoji = Math.floor(Math.random() * (end - start + 1) + start);
             curArrOfEmojis.push(String.fromCodePoint(currentEmoji));
         }
@@ -53,7 +58,7 @@ const MemoryGamePage = () => {
                 }
                 return cell;
             }));
-        }, 2000)
+        }, 1000)
     };
 
     const handleClick = (curClicked) => {
@@ -66,11 +71,19 @@ const MemoryGamePage = () => {
             return cell;
         }));
     };
+    const handleRowsChange = (num) => {
+        setRows(num);
+    };
+    const handleColsChange = (num) => {
+        setCols(num);
+    };
 
     useEffect(() => {
-        fillCells();
-        setIsGameOver(false);
-    }, [])
+        if(isGameSettingsSet) {
+            fillCells();
+            setIsGameOver(false);
+        }
+    }, [isGameSettingsSet])
 
     useEffect(() => {
         if (isRestartButtonClicked) handleRestartGame();
@@ -92,15 +105,34 @@ const MemoryGamePage = () => {
     }, [curOpened])
 
     return (
-        <div className="d-flex flex-column align-items-center vw-100 vh-100">
+        <div>
+            {isGameSettingsSet ?
+                <div className="d-flex flex-column align-items-center vw-100 vh-100">
+                    <Header title={title}/>
+                    <div className="d-flex flex-column vh-100 justify-content-center align-items-center">
+                        <Board
+                            cells={cells}
+                            handleClick={handleClick}
+                            rows={rows}
+                            cols={cols}
+                        />
+                        <BottomMenu
+                            tries={tries}
+                            setIsRestartButtonClicked={setIsRestartButtonClicked}
+                            isGameOver={isGameOver}
+                        />
+                    </div>
+                </div> :
+                <MemoryGameStartMenu
+                    rows={rows}
+                    cols={cols}
+                    handleRowsChange={handleRowsChange}
+                    handleColsChange={handleColsChange}
+                    setIsGameSettingsSet={setIsGameSettingsSet}
+                />
+            }
 
-            <h1 style={{fontWeight: "350", color: "whitesmoke", borderBottom: "2px solid white"}}>Memory Game</h1>
 
-            <div className="d-flex flex-column vh-100 justify-content-center align-items-center">
-                <Board cells={cells} handleClick={handleClick}/>
-                <BottomMenu tries={tries} setIsRestartButtonClicked={setIsRestartButtonClicked}
-                            isGameOver={isGameOver}/>
-            </div>
         </div>
 
     );
