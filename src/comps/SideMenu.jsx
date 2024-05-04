@@ -14,7 +14,7 @@ const SideMenu = () => {
 
     return (
         <div className="d-flex">
-            <Navbar collapseOnSelect style={{backgroundColor: "#232B2B"}} variant="dark" expand="sm" className={`sideMenu mt-0 ${isCollapsed ? "sideMenuCol" : ""}`}>
+            <Navbar expanded={isCollapsed} collapseOnSelect={true} style={{backgroundColor: "#232B2B"}} variant="dark" expand="sm" className={`sideMenu mt-0 ${isCollapsed ? "sideMenuCol" : ""}`}>
                 <Container className="d-flex flex-column justify-content-center align-content-center">
                     <NavbarBrand className="m-0 navbrandimg">
                         <Nav.Link to="/" as={NavLink}>
@@ -43,12 +43,12 @@ const SideMenu = () => {
 
                         <NavbarToggle className="m-0 navtog" area-controls="navbar-nav-toggle" onClick={() => setIsCollapsed(!isCollapsed)}/>
 
-                        <div className="d-sm-none navlinks">
-                            <NavbarCollapse id={"navbar-nav-toggle"} className="collapsemenu">
+                        <div className="d-sm-none ms-4">
+                            <NavbarCollapse id="navbar-nav-toggle" className="collapsemenu">
                                 <Nav className="d-flex">
-                                    <Nav.Link className="mb-5" to="/" as={NavLink}>Home</Nav.Link>
-                                    <Nav.Link className="mb-5" to="/tictactoe" as={NavLink}>TicTacToe</Nav.Link>
-                                    <Nav.Link  to="/memorygame" as={NavLink}>Memory Game</Nav.Link>
+                                    <Nav.Link onClick={() => setIsCollapsed(!isCollapsed)} className="mb-5" to="/" as={NavLink}>Home</Nav.Link>
+                                    <Nav.Link onClick={() => setIsCollapsed(!isCollapsed)} className="mb-5" to="/tictactoe" as={NavLink}>TicTacToe</Nav.Link>
+                                    <Nav.Link onClick={() => setIsCollapsed(!isCollapsed)} to="/memorygame" as={NavLink}>Memory Game</Nav.Link>
                                 </Nav>
                             </NavbarCollapse>
 
